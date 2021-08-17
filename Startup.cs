@@ -28,10 +28,13 @@ namespace Session05ArchitectureMVC
                 app.UseDeveloperExceptionPage();
             }
 
+            // Middleware
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
+                // Specifying 'Home' will look for the 'HomeController.cs'
+                // controller and the 'Index()' method.
                 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
             });
 
