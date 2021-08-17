@@ -8,9 +8,9 @@ namespace Session05ArchitectureMVC.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        public string Index()
         {
-            return View();
+            return "My home controller";
         }
     }
 }
