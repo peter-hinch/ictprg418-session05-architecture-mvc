@@ -8,9 +8,17 @@ namespace Session05ArchitectureMVC.Controllers
 {
     public class HomeController : Controller
     {
-        public string Index()
+        public IActionResult Index()
         {
-            return "My home controller";
+            ContentResult c = new ContentResult();
+            c.Content = "My home controller";
+            
+            // Can return:
+            // ContentResult, FileContentResult, FilePathResult, FileStreamResult,
+            // EmptyResult, JavaScriptResult, JsonResult, RedirectToResult,
+            // HttpUnauthorisedResult, RedirectToRouteResult, ViewResult.
+            // All of which which are extensions of the IActionResult class.
+            return c;
         }
     }
 }
