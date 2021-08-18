@@ -37,7 +37,8 @@ namespace Session05ArchitectureMVC
             {
                 // Specifying 'Home' will look for the 'HomeController.cs'
                 // controller and the 'Index()' method.
-                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+                //endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Post}/{id?}");
             });
 
             app.UseFileServer();

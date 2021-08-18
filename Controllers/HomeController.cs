@@ -10,15 +10,24 @@ namespace Session05ArchitectureMVC.Controllers
     {
         public IActionResult Index()
         {
-            ContentResult c = new ContentResult();
-            c.Content = "My home controller";
-            
             // Can return:
             // ContentResult, FileContentResult, FilePathResult, FileStreamResult,
             // EmptyResult, JavaScriptResult, JsonResult, RedirectToResult,
             // HttpUnauthorisedResult, RedirectToRouteResult, ViewResult.
             // All of which which are extensions of the IActionResult class.
-            return c;
+
+            //ContentResult c = new ContentResult();
+            //c.Content = "My home controller";
+            //return c;
+
+            // Alternatively:
+            return new ContentResult { Content = "My home controller (Index method)" };
+        }
+
+        // Exercise: Add a Post action method
+        public IActionResult Post()
+        {
+            return new ContentResult { Content = "My home controller (Post method)" };
         }
     }
 }
