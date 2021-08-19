@@ -13,5 +13,11 @@ namespace Session05ArchitectureMVC.Controllers
         {
             return new ContentResult { Content = "My post controller (Index method)" };
         }
+
+        // Exercise: Add another action method ShowPost in the post controller.
+        public IActionResult ShowPost()
+        {
+            return new ContentResult { Content = "My post controller (ShowPost method)" };
+        }
     }
 }
