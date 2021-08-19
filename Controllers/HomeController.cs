@@ -25,14 +25,16 @@ namespace Session05ArchitectureMVC.Controllers
         }
 
         // Exercise: Add a Post action method
-        // Exercise: Return "Hello, you passed ID: 2"
         // This action method is accessible at the URL ./Home/Post
+        // Exercise: Return "Hello, you passed ID: 2"
+        // This attribute is accessible at the URL ./Home/Post/2
         public IActionResult Post(int id)
         {
             return new ContentResult { Content = "My home controller (Post method). Hello, you passed ID: " + id };
         }
 
         // Exercise: Accept a boolean in a new action method
+        // This attribute is accessible at the URL ./Home/PostBool/true
         public IActionResult PostBool(bool id) 
         {
             return new ContentResult { Content = "The boolean result is: " + id };
