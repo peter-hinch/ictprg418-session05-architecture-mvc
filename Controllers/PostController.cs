@@ -16,6 +16,7 @@ namespace Session05ArchitectureMVC.Controllers
 
         // Exercise: Add another action method ShowPost in the post controller.
         // Exercise: Show the post ID.
+        [Route("p")] // this allows the URL to be shortened to simply ./p
         public IActionResult ShowPost(int id)
         {
             return new ContentResult { Content = "My post controller (ShowPost method), post ID: " + id };
