@@ -10,11 +10,11 @@ namespace Session05ArchitectureMVC.Controllers
     {
         public IActionResult Index()
         {
-            // Can return:
+            // A method with return type IActionResult can return any of the following:
             // ContentResult, FileContentResult, FilePathResult, FileStreamResult,
             // EmptyResult, JavaScriptResult, JsonResult, RedirectToResult,
             // HttpUnauthorisedResult, RedirectToRouteResult, ViewResult.
-            // All of which which are extensions of the IActionResult class.
+            // All of these are extensions of the IActionResult class.
 
             // ContentResult can be used to return content.
             //ContentResult c = new ContentResult();
