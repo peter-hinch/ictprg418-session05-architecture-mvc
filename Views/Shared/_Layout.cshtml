@@ -1,7 +1,15 @@
 ﻿<header>
+    @* 1. HTMLhelper
+       2. TagHelper - requires import refer to _ViewImports.cshtml *@
+
     <h1>This is the header.</h1>
     <ul>
+        <!-- ActionLink takes the following arguments:
+             link text, action method, controller, routevalues (here null), can add attributes -->
+        <li>@Html.ActionLink("Display Page", "Display", "Post", null, new { title = "Go to the display page." })</li>
+        <li>@Html.ActionLink("Add Page", "Add", "Post", null, new { title = "Go to the add page." })</li>
         <li>@Html.ActionLink("Edit Page", "Edit", "Post", null, new { title = "Go to the edit page." })</li>
+        <li>@Html.ActionLink("Delete Page", "Delete", "Post", null, new { title = "Go to the delete page." })</li>
     </ul>
 </header>
 <main>
