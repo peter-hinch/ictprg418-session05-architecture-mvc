@@ -15,9 +15,10 @@ namespace Session05ArchitectureMVC.Controllers
         }
 
         // Exercise: Add another action method ShowPost in the post controller.
-        public IActionResult ShowPost()
+        // Exercise: Show the post ID.
+        public IActionResult ShowPost(int id)
         {
-            return new ContentResult { Content = "My post controller (ShowPost method)" };
+            return new ContentResult { Content = "My post controller (ShowPost method), post ID: " + id };
         }
     }
 }
