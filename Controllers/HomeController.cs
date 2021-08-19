@@ -26,9 +26,11 @@ namespace Session05ArchitectureMVC.Controllers
 
             // ViewResult can be used to direct to the corresponding Razor view.
             // This will look for the view in the location: Views/Home/Index.cshtml
-            ViewResult v = View(); 
+            //ViewResult v = View(); 
+            //return v;
 
-            return v;
+            // Aternatively:
+            return View();
         }
 
         // Exercise: Add a Post action method
@@ -39,9 +41,7 @@ namespace Session05ArchitectureMVC.Controllers
         {
             //return new ContentResult { Content = "My home controller (Post method). Hello, you passed ID: " + id };
 
-            ViewResult v = View();
-
-            return v;
+            return View();
         }
 
         // Exercise: Accept a boolean in a new action method
