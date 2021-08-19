@@ -37,7 +37,11 @@ namespace Session05ArchitectureMVC.Controllers
         // This attribute is accessible at the URL ./Home/Post/2
         public IActionResult Post(int id)
         {
-            return new ContentResult { Content = "My home controller (Post method). Hello, you passed ID: " + id };
+            //return new ContentResult { Content = "My home controller (Post method). Hello, you passed ID: " + id };
+
+            ViewResult v = View();
+
+            return v;
         }
 
         // Exercise: Accept a boolean in a new action method
