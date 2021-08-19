@@ -32,5 +32,11 @@ namespace Session05ArchitectureMVC.Controllers
         {
             return new ContentResult { Content = "Year: " + year + ", Month: " + month + ", Key: " + key };
         }
+
+        // Exercise: Create a view called Display which gives a page: "I am in display page."
+        public IActionResult Display()
+        {
+            return View();
+        }
     }
 }
