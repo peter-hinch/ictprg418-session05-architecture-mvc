@@ -25,6 +25,7 @@ namespace Session05ArchitectureMVC.Controllers
         }
 
         // Exercise: Add a Post action method
+        // This action method is accessible at the URL ./Home/Post
         public IActionResult Post()
         {
             return new ContentResult { Content = "My home controller (Post method)" };
