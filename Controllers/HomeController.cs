@@ -31,5 +31,11 @@ namespace Session05ArchitectureMVC.Controllers
         {
             return new ContentResult { Content = "My home controller (Post method). Hello, you passed ID: " + id };
         }
+
+        // Exercise: Accept a boolean in a new action method
+        public IActionResult PostBool(bool id) 
+        {
+            return new ContentResult { Content = "The boolean result is: " + id };
+        }
     }
 }
