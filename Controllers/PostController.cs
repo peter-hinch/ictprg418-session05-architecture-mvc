@@ -9,6 +9,8 @@ namespace Session05ArchitectureMVC.Controllers
     public class PostController : Controller
     {
         // Exercise: Create a new controller called Post, with an action method Index.
+        // Exercise: Override the default route to make Post controller the top level URL.
+        //[Route("")]
         public IActionResult Index()
         {
             return new ContentResult { Content = "My post controller (Index method)" };
@@ -23,7 +25,7 @@ namespace Session05ArchitectureMVC.Controllers
         }
 
         // Exercise: Define an action method which will accept multiple parameters.
-        [Route("{year}/{month}/{key}")]
+        [Route("{year}/{month}/{key}")] // you can specify multiple arguments in the route
         public IActionResult ShowDate(int year, int month, string key)
         {
             return new ContentResult { Content = "Year: " + year + ", Month: " + month + ", Key: " + key };

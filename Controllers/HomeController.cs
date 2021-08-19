@@ -16,12 +16,19 @@ namespace Session05ArchitectureMVC.Controllers
             // HttpUnauthorisedResult, RedirectToRouteResult, ViewResult.
             // All of which which are extensions of the IActionResult class.
 
+            // ContentResult can be used to return content.
             //ContentResult c = new ContentResult();
             //c.Content = "My home controller";
             //return c;
 
             // Alternatively:
-            return new ContentResult { Content = "My home controller (Index method)" };
+            //return new ContentResult { Content = "My home controller (Index method)" };
+
+            // ViewResult can be used to direct to the corresponding Razor view.
+            // This will look for the view in the location: Views/Home/Index.cshtml
+            ViewResult v = View(); 
+
+            return v;
         }
 
         // Exercise: Add a Post action method
