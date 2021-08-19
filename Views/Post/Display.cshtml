@@ -3,9 +3,9 @@
 <article>
     <p>I am in display page.</p>
     <table>
-        <tr><th>Title</th><td>@ViewBag.title</td></tr>
-        <tr><th>Content</th><td>@ViewBag.content</td></tr>
-        <tr><th>Posted</th><td>@ViewBag.publishedOn</td></tr>
-        <tr><th>Author</th><td>@ViewBag.publishedBy</td></tr>
+        <tr><th>Title</th><td>@Html.TextBox("Title", (string)ViewBag.title, new { @id="idTitle", @class="css-class" })</td></tr>
+        <tr><th>Content</th><td>@Html.TextArea("Content", (string)ViewBag.content, new { @id = "idTitle", @class = "css-class" })</td></tr>
+        <tr><th>Posted</th><td>@Html.TextBox("Published On", (string)ViewBag.publishedOn, new { @id = "idTitle", @class = "css-class" })</td></tr>
+        <tr><th>Author</th><td>@Html.TextBox("Published By", (string)ViewBag.publishedBy, new { @id = "idTitle", @class = "css-class" })</td></tr>
     </table>
 </article>
