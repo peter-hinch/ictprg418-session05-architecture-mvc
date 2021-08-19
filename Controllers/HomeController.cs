@@ -25,10 +25,11 @@ namespace Session05ArchitectureMVC.Controllers
         }
 
         // Exercise: Add a Post action method
+        // Exercise: Return "Hello, you passed ID: 2"
         // This action method is accessible at the URL ./Home/Post
-        public IActionResult Post()
+        public IActionResult Post(int id)
         {
-            return new ContentResult { Content = "My home controller (Post method)" };
+            return new ContentResult { Content = "My home controller (Post method). Hello, you passed ID: " + id };
         }
     }
 }
