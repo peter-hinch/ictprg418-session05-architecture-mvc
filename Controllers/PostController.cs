@@ -38,5 +38,23 @@ namespace Session05ArchitectureMVC.Controllers
         {
             return View();
         }
+
+        // Exercise: Create a view called Add which gives a page: "I am in add page."
+        public IActionResult Add()
+        {
+            return View();
+        }
+
+        // Exercise: Create a view called Edit which gives a page: "I am in edit page."
+        public IActionResult Edit()
+        {
+            return View();
+        }
+
+        // Exercise: Create a view called Delete which gives a page: "I am in delete page."
+        public IActionResult Delete()
+        {
+            return View();
+        }
     }
 }
