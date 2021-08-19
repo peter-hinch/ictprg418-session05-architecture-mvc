@@ -21,5 +21,12 @@ namespace Session05ArchitectureMVC.Controllers
         {
             return new ContentResult { Content = "My post controller (ShowPost method), post ID: " + id };
         }
+
+        // Exercise: Define an action method which will accept multiple parameters.
+        [Route("{year}/{month}/{key}")]
+        public IActionResult ShowDate(int year, int month, string key)
+        {
+            return new ContentResult { Content = "Year: " + year + ", Month: " + month + ", Key: " + key };
+        }
     }
 }
