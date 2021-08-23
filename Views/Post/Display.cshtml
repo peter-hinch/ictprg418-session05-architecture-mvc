@@ -2,30 +2,35 @@
 
 <article>
     <p>I am in display page.</p>
-    <table>
-        <!-- Access items from ViewBag -->
-        <tr><th>Title</th><td>@Html.TextBox("Title", (string)ViewBag.title, new { @id = "idTitle", @class = "css-class" })</td></tr>
-        <tr><th>Content</th><td>@Html.TextArea("Content", (string)ViewBag.content, new { @id = "idContent", @class = "css-class" })</td></tr>
-        <tr><th>Posted</th><td>@Html.TextBox("Published On", (string)ViewBag.publishedOn, new { @id = "idPublishedOn", @class = "css-class" })</td></tr>
-        <tr><th>Author</th><td>@Html.TextBox("Published By", (string)ViewBag.publishedBy, new { @id = "idPublishedBy", @class = "css-class" })</td></tr>
-        <!-- Demonstration of some other form elements -->
-        <tr><th>Sports</th><td>@Html.CheckBox("myCheckbox1", true, new { @id = "idCheckbox1", @class = "css-class" }) Skateboarding</td></tr>
-        <tr><td></td><td>@Html.CheckBox("myCheckbox1", true, new { @id = "idCheckbox2", @class = "css-class" }) BMX</td></tr>
-        <tr><td></td><td>@Html.RadioButton("State", true, new { @id = "idEnabled", @class = "css-class", @checked = true }) Enable</td></tr>
-        <tr><td></td><td>@Html.RadioButton("State", true, new { @id = "idDisabled", @class = "css-class", @checked = false }) Disable</td></tr>
-        <tr>
-            @{
-                var selectList = new SelectList(new List<SelectListItem> {
+
+    <div class="container">
+
+        <table>
+            <!-- Access items from ViewBag -->
+            <tr><th>Title</th><td>@Html.TextBox("Title", (string)ViewBag.title, new { @id = "idTitle", @class = "css-class" })</td></tr>
+            <tr><th>Content</th><td>@Html.TextArea("Content", (string)ViewBag.content, new { @id = "idContent", @class = "css-class" })</td></tr>
+            <tr><th>Posted</th><td>@Html.TextBox("Published On", (string)ViewBag.publishedOn, new { @id = "idPublishedOn", @class = "css-class" })</td></tr>
+            <tr><th>Author</th><td>@Html.TextBox("Published By", (string)ViewBag.publishedBy, new { @id = "idPublishedBy", @class = "css-class" })</td></tr>
+            <!-- Demonstration of some other form elements -->
+            <tr><th>Sports</th><td>@Html.CheckBox("myCheckbox1", true, new { @id = "idCheckbox1", @class = "css-class" }) Skateboarding</td></tr>
+            <tr><td></td><td>@Html.CheckBox("myCheckbox1", true, new { @id = "idCheckbox2", @class = "css-class" }) BMX</td></tr>
+            <tr><td></td><td>@Html.RadioButton("State", true, new { @id = "idEnabled", @class = "css-class", @checked = true }) Enable</td></tr>
+            <tr><td></td><td>@Html.RadioButton("State", true, new { @id = "idDisabled", @class = "css-class", @checked = false }) Disable</td></tr>
+            <tr>
+                @{
+                    var selectList = new SelectList(new List<SelectListItem> {
                     new SelectListItem { Text = "Dynamic Web Development", Value= "DWD"},
                     new SelectListItem { Text = "Database Design", Value= "DD1"}
                 });
 
 
-            }
+                }
 
-            @Html.DropDownList("DD1", selectList, "Select an item", new { @id = "idDd1", @class = "css-class" })
-        </tr>
-    </table>
+                @Html.DropDownList("DD1", selectList, "Select an item", new { @id = "idDd1", @class = "css-class" })
+            </tr>
+        </table>
+
+    </div>
 </article>
 
 <article>
