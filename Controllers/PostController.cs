@@ -36,6 +36,7 @@ namespace Session05ArchitectureMVC.Controllers
         // Exercise: Create a view called Display which gives a page: "I am in display page."
         public IActionResult Display()
         {
+            // Add some information to the ViewBag, this is page based.
             ViewBag.title = "Something";
             ViewBag.content = "Here's some stuff";
             ViewBag.publishedOn = "2021-08-19";
