@@ -61,7 +61,7 @@ namespace Session05ArchitectureMVC.Controllers
             {
                 new hobbies{ bHobby = true, hName = "Cricket"},
                 new hobbies{ bHobby = true, hName = "Soccer"},
-                new hobbies{ bHobby = true, hName = "Tennis"},
+                new hobbies{ bHobby = false, hName = "Tennis"},
             };
 
             Post p = new Post

@@ -56,6 +56,17 @@
             }
         </td>
     </tr>
+    <tr>
+        <th>@Html.LabelFor(m => m.hobbies)</th>
+        <td>
+            <ul class="list-group">
+            @foreach(var item in Model.hobbies)
+            {
+                <li class="list-group-item">@Html.CheckBoxFor(m => item.bHobby) @item.hName</li>
+            }
+            </ul>
+        </td>
+    </tr>
 </table>
 
 <h3>Table created using Tag Helper syntax</h3>
@@ -102,6 +113,17 @@
                 @Html.Label("Male")<input asp-for="gender" type="radio" value="Male" />
                 @Html.Label("Female")<input asp-for="gender" type="radio" value="Female" checked />
             }
+        </td>
+    </tr>
+    <tr>
+        <th><label asp-for="hobbies"></label></th>
+        <td>
+            <ul class="list-group">
+            @foreach (var item in Model.hobbies)
+            {
+                <li class="list-group-item"><input asp-for="@item.bHobby" type="checkbox" value="@item.hName"/> @item.hName</li>
+            }
+            </ul>
         </td>
     </tr>
 </table>
