@@ -1,0 +1,112 @@
+﻿<!-- _ViewStart.cshtml contains the boilerplate to be used for all views. -->
+
+<article>
+    <p>I am in display page.</p>
+
+    <div class="container">
+
+        <table>
+            <!-- Access items from ViewBag -->
+            <tr><th>Title</th><td>@Html.TextBox("Title", (string)ViewBag.title, new { @id = "idTitle", @class = "css-class" })</td></tr>
+            <tr><th>Content</th><td>@Html.TextArea("Content", (string)ViewBag.content, new { @id = "idContent", @class = "css-class" })</td></tr>
+            <tr><th>Posted</th><td>@Html.TextBox("Published On", (string)ViewBag.publishedOn, new { @id = "idPublishedOn", @class = "css-class" })</td></tr>
+            <tr><th>Author</th><td>@Html.TextBox("Published By", (string)ViewBag.publishedBy, new { @id = "idPublishedBy", @class = "css-class" })</td></tr>
+            <!-- Demonstration of some other form elements -->
+            <tr><th>Sports</th><td>@Html.CheckBox("myCheckbox1", true, new { @id = "idCheckbox1", @class = "css-class" }) Skateboarding</td></tr>
+            <tr><td></td><td>@Html.CheckBox("myCheckbox1", true, new { @id = "idCheckbox2", @class = "css-class" }) BMX</td></tr>
+            <tr><td></td><td>@Html.RadioButton("State", true, new { @id = "idEnabled", @class = "css-class", @checked = true }) Enable</td></tr>
+            <tr><td></td><td>@Html.RadioButton("State", true, new { @id = "idDisabled", @class = "css-class", @checked = false }) Disable</td></tr>
+            <tr>
+                @{
+                    var selectList = new SelectList(new List<SelectListItem> {
+                    new SelectListItem { Text = "Dynamic Web Development", Value= "DWD"},
+                    new SelectListItem { Text = "Database Design", Value= "DD1"}
+                });
+
+
+                }
+
+                @Html.DropDownList("DD1", selectList, "Select an item", new { @id = "idDd1", @class = "css-class" })
+            </tr>
+        </table>
+
+    </div>
+</article>
+
+<article>
+    <table>
+        <tr><td>Title</td><td>@Html.TextBox("Title", (string)ViewBag.Title, new { @id = "idTitle", @class = "form-control" })</td></tr>
+        <tr><td>News</td><td>@Html.TextArea("news", (string)ViewBag.newsContents, new { @id = "idnewsContents", @class = "form-control" })</td></tr>
+        <tr><td>Date</td><td>@Html.TextBox("date", (string)ViewBag.publishedOn, new { @id = "idDate", @class = "form-control" })</td></tr>
+        <tr><td>Author</td><td>@Html.TextBox("author", (string)ViewBag.publishedBy, new { @id = "idAuthor", @class = "form-control" })</td></tr>
+    </table>
+    <br />
+    <br />
+    <b><u>Other Details - Just for introduction</u></b>
+
+    <table border="1">
+        <tr><td>@Html.Label("Sports")</td><td>:Select</td></tr>
+        <tr>
+            <td>
+                @Html.Label("Cricket")
+            </td>
+            <td>
+                @Html.CheckBox("myCheckBox1", true, new { @id = "idCheck1", @class = "form-control" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.Label("Soccer")
+            </td>
+            <td>
+                @Html.CheckBox("myCheckBox2", true, new { @id = "idEnabled", @class = "form-control" })
+            </td>
+        </tr>
+
+    </table>
+    <table border="1">
+        <tr>
+            <td>@Html.Label("State")</td>
+            <td>:Select</td>
+        </tr>
+        <tr>
+            <td>@Html.Label("Enable")</td>
+            <td>@Html.RadioButton("State", true, new { @id = "idEnabled", @class = "form-control", @checked = false })</td>
+        </tr>
+        <tr>
+            <td>@Html.Label("Disable")</td>
+            <td>@Html.RadioButton("State", true, new { @id = "idEnabled", @class = "form-control", @checked = true })</td>
+        </tr>
+    </table>
+    <table border="1">
+        <tr>
+            <td>Course Details</td>
+            <td>
+                @{
+                    var selectList2 = new SelectList(new List<SelectListItem> {
+new SelectListItem { Text = "Dynamic Web Development", Value= "DWD"},
+new SelectListItem { Text = "Databse Design", Value= "DD1"} }, "Value", "Text");
+
+        @Html.DropDownList("ddl", selectList2, "Select an item", new { @id = "dd1", @class = "form-control" });
+
+                }
+            </td>
+            <td></td>
+        </tr>
+    </table>
+    <form>
+        <table>
+            <tr>
+                <td>
+                    <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                    <label for="vehicle1"> I have a bike</label><br>
+                    <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+                    <label for="vehicle2"> I have a car</label><br>
+                    <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+                    <label for="vehicle3"> I have a boat</label><br><br>
+                    <input type="submit" value="Submit">
+                </td>
+            </tr>
+        </table>
+    </form>
+</article>

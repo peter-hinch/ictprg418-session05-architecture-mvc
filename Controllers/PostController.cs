@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Session05ArchitectureMVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,12 +39,62 @@ namespace Session05ArchitectureMVC.Controllers
         public IActionResult Display()
         {
             // Add some information to the ViewBag, this is page based.
-            ViewBag.title = "Something";
-            ViewBag.content = "Here's some stuff";
-            ViewBag.publishedOn = "2021-08-19";
-            ViewBag.publishedBy = "Peter";
+            //ViewBag.title = "Something";
+            //ViewBag.content = "Here's some stuff";
+            //ViewBag.publishedOn = "2021-08-19";
+            //ViewBag.publishedBy = "Peter";
 
-            return View();
+            string strNews = null;
+            
+            strNews += "(CNN)Fires are raging at a record rate in Brazil's Amazon rainforest, and scientists warn that it could strike a devastating blow to the fight against climate change.";
+
+            strNews += "The fires are burning at the highest rate since the country's space research center, the National Institute for Space Research (known by the abbreviation INPE), began tracking them in 2013, the center said Tuesday.";
+
+
+            strNews += "There have been 72,843 fires in Brazil this year, with more than half in the Amazon region, INPE said. That's more than an 80% increase compared with the same period last year.";
+
+            strNews += "The Amazon is often referred to as the planet's lungs, producing 20% of the oxygen in the Earth's atmosphere.";
+
+            strNews += "It is considered vital in slowing global warming, and it is home to uncountable species of fauna and flora. Roughly half the size of the United States, it is the largest rainforest on the planet.";
+
+            List<hobbies> h = new List<hobbies>
+            {
+                new hobbies{ bHobby = true, hName = "Cricket"},
+                new hobbies{ bHobby = true, hName = "Soccer"},
+                new hobbies{ bHobby = true, hName = "Tennis"},
+            };
+
+            Post p = new Post
+            {
+                Id = 1,
+                title = "Amazon News",
+                newsContent = strNews,
+                publishedBy = "Sophia Mark",
+                publishedOn = Convert.ToDateTime("2019-02-03"),
+                gender = "Female",
+                hobbies = h
+            };
+
+            FillArray(p);
+
+            return View(p);
+        }
+
+        private void FillArray(Post p1)
+        {
+            SelectListItem item = new SelectListItem();
+            
+            item.Text = "Australia";
+            item.Value = "Au";
+            p1.listP.Add(item);
+
+            item.Text = "United Kingdom";
+            item.Value = "UK";
+            p1.listP.Add(item);
+
+            item.Text = "United States";
+            item.Value = "US";
+            p1.listP.Add(item);
         }
 
         // Exercise: Create a view called Add which gives a page: "I am in add page."
