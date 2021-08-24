@@ -57,13 +57,6 @@ namespace Session05ArchitectureMVC.Controllers
 
             strNews += "It is considered vital in slowing global warming, and it is home to uncountable species of fauna and flora. Roughly half the size of the United States, it is the largest rainforest on the planet.";
 
-            List<hobbies> h = new List<hobbies>
-            {
-                new hobbies{ bHobby = true, hName = "Cricket"},
-                new hobbies{ bHobby = true, hName = "Soccer"},
-                new hobbies{ bHobby = false, hName = "Tennis"},
-            };
-
             Post p = new Post
             {
                 Id = 1,
@@ -71,31 +64,9 @@ namespace Session05ArchitectureMVC.Controllers
                 newsContent = strNews,
                 publishedBy = "Sophia Mark",
                 publishedOn = Convert.ToDateTime("2019-02-03"),
-                gender = "Female",
-                hobbies = h
             };
 
-            FillArray(p);
-
             return View(p);
-        }
-
-        private void FillArray(Post p1)
-        {
-            SelectListItem item = new SelectListItem();
-            item.Text = "Australia";
-            item.Value = "Au";
-            p1.listP.Add(item);
-
-            item = new SelectListItem();
-            item.Text = "United Kingdom";
-            item.Value = "UK";
-            p1.listP.Add(item);
-
-            item = new SelectListItem();
-            item.Text = "United States";
-            item.Value = "US";
-            p1.listP.Add(item);
         }
 
         // Exercise: Create a view called Add which gives a page: "I am in add page."
