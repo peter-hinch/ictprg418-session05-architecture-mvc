@@ -6,29 +6,28 @@
     <h2>Add data to the Model</h2>
     @using (Html.BeginForm())
     {
-        <table class="table">
-            <!-- This is written in the HTML Helper syntax -->
-            <tr>
-                <th>@Html.LabelFor(m => m.Id)</th>
-                <td>@Html.EditorFor(m => m.Id)</td>
-            </tr>
-            <tr>
-                <th>@Html.LabelFor(m => m.title)</th>
-                <td>@Html.EditorFor(m => m.title)</td>
-            </tr>
-            <tr>
-                <th>@Html.LabelFor(m => m.newsContent)</th>
-                <td>@Html.EditorFor(m => m.newsContent)</td>
-            </tr>
-            <tr>
-                <th>@Html.LabelFor(m => m.publishedBy)</th>
-                <td>@Html.EditorFor(m => m.publishedBy)</td>
-            </tr>
-            <tr>
-                <th>@Html.LabelFor(m => m.publishedOn)</th>
-                <td>@Html.EditorFor(m => m.publishedOn)</td>
-            </tr>
-        </table>
+        <!-- This is written in the HTML Helper syntax -->
+        <div class="mb-3">
+            <label class="form-label">@Html.LabelFor(m => m.Id)</label>
+            <!-- To add a class to an EditorFor, you must add new htmlAttributes -->
+            @Html.EditorFor(m => m.Id, new { htmlAttributes = new { @class = "form-control"} })
+        </div>
+        <div class="mb-3">
+            <label class="form-label">@Html.LabelFor(m => m.title)</label>
+            @Html.EditorFor(m => m.title, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <div class="mb-3">
+            <label class="form-label">@Html.LabelFor(m => m.newsContent)</label>
+            @Html.EditorFor(m => m.newsContent, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <div class="mb-3">
+            <label class="form-label">@Html.LabelFor(m => m.publishedBy)</label>
+            @Html.EditorFor(m => m.publishedBy, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <div class="mb-3">
+            <label class="form-label">@Html.LabelFor(m => m.publishedOn)</label>
+            @Html.EditorFor(m => m.publishedOn, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
         <button type="submit" class="btn btn-primary">Add</button>
     }
 </article>
