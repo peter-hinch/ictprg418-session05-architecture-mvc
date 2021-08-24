@@ -21,6 +21,7 @@ namespace Session05ArchitectureMVC.Models
         public string newsContent { get; set; }
 
         [Display(Name = "Published On")]
+        [DataType(DataType.DateTime)]
         public DateTime publishedOn { get; set; }
 
         [Display(Name = "Author")]

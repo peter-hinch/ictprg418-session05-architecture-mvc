@@ -11,6 +11,16 @@ namespace Session05ArchitectureMVC.Controllers
     public class PostController : Controller
     {
         List<Post> p;
+
+        public PostController()
+        {
+            p = new List<Post>
+            {
+                new Post{Id=1, title="News Article", newsContent="Here is a wonderful news article.", publishedBy="Jose Chacko", publishedOn=Convert.ToDateTime("2019-01-01")},
+                new Post{Id=2, title="Another Article", newsContent="This is another informative news article.", publishedBy="Priya Jose", publishedOn=Convert.ToDateTime("2019-02-02")},
+                new Post{Id=3, title="A Third Article", newsContent="Wouldn't you know it? Here's another article, with the same high quality writing as the other two.", publishedBy="Hanna Jose", publishedOn=Convert.ToDateTime("2019-03-03")},
+            };
+        }
         
         public IActionResult Index()
         {
@@ -30,27 +40,7 @@ namespace Session05ArchitectureMVC.Controllers
         }
 
         public IActionResult Display()
-        {
-            string strNews = null;
-            
-            strNews += "(CNN)Fires are raging at a record rate in Brazil's Amazon rainforest, and scientists warn that it could strike a devastating blow to the fight against climate change.";
-
-            strNews += "The fires are burning at the highest rate since the country's space research center, the National Institute for Space Research (known by the abbreviation INPE), began tracking them in 2013, the center said Tuesday.";
-
-
-            strNews += "There have been 72,843 fires in Brazil this year, with more than half in the Amazon region, INPE said. That's more than an 80% increase compared with the same period last year.";
-
-            strNews += "The Amazon is often referred to as the planet's lungs, producing 20% of the oxygen in the Earth's atmosphere.";
-
-            strNews += "It is considered vital in slowing global warming, and it is home to uncountable species of fauna and flora. Roughly half the size of the United States, it is the largest rainforest on the planet.";
-
-            p = new List<Post>
-            {
-                new Post{Id=1, title="Amazon News", newsContent=strNews, publishedBy="Jose Chacko", publishedOn=Convert.ToDateTime("2019-01-01")},
-                new Post{Id=2, title="Another Article", newsContent=strNews, publishedBy="Priya Jose", publishedOn=Convert.ToDateTime("2019-02-02")},
-                new Post{Id=3, title="A Third Article", newsContent=strNews, publishedBy="Hanna Jose", publishedOn=Convert.ToDateTime("2019-03-03")},
-            };
-
+        { 
             return View(p);
         }
         
@@ -58,15 +48,18 @@ namespace Session05ArchitectureMVC.Controllers
         [HttpGet]
         public IActionResult Add()
         {
+            // Create a new Post object with the current timestamp prefilled.
             Post p = new Post { publishedOn = DateTime.Now };
 
             return View(p);
         }
 
         [HttpPost]
-        public IActionResult Add(Post p)
+        public IActionResult Add(Post p2)
         {
-            return View();
+            this.p.Add(p2);
+
+            return View("Display", p);
         }
 
         public IActionResult Edit()
