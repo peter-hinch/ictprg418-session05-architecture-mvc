@@ -10,40 +10,27 @@ namespace Session05ArchitectureMVC.Controllers
 {
     public class PostController : Controller
     {
-        // Exercise: Create a new controller called Post, with an action method Index.
-        // Exercise: Override the default route to make Post controller the top level URL.
-        //[Route("")]
+        List<Post> p;
+        
         public IActionResult Index()
         {
-            //return new ContentResult { Content = "My post controller (Index method)" };
-
             return View();
         }
 
-        // Exercise: Add another action method ShowPost in the post controller.
-        // Exercise: Show the post ID.
         [Route("p")] // this allows the URL to be shortened to simply ./p
         public IActionResult ShowPost(int id)
         {
             return new ContentResult { Content = "My post controller (ShowPost method), post ID: " + id };
         }
 
-        // Exercise: Define an action method which will accept multiple parameters.
         [Route("{year}/{month}/{key}")] // you can specify multiple arguments in the route
         public IActionResult ShowDate(int year, int month, string key)
         {
             return new ContentResult { Content = "Year: " + year + ", Month: " + month + ", Key: " + key };
         }
 
-        // Exercise: Create a view called Display which gives a page: "I am in display page."
         public IActionResult Display()
         {
-            // Add some information to the ViewBag, this is page based.
-            //ViewBag.title = "Something";
-            //ViewBag.content = "Here's some stuff";
-            //ViewBag.publishedOn = "2021-08-19";
-            //ViewBag.publishedBy = "Peter";
-
             string strNews = null;
             
             strNews += "(CNN)Fires are raging at a record rate in Brazil's Amazon rainforest, and scientists warn that it could strike a devastating blow to the fight against climate change.";
@@ -57,31 +44,36 @@ namespace Session05ArchitectureMVC.Controllers
 
             strNews += "It is considered vital in slowing global warming, and it is home to uncountable species of fauna and flora. Roughly half the size of the United States, it is the largest rainforest on the planet.";
 
-            Post p = new Post
+            p = new List<Post>
             {
-                Id = 1,
-                title = "Amazon News",
-                newsContent = strNews,
-                publishedBy = "Sophia Mark",
-                publishedOn = Convert.ToDateTime("2019-02-03"),
+                new Post{Id=1, title="Amazon News", newsContent=strNews, publishedBy="Jose Chacko", publishedOn=Convert.ToDateTime("2019-01-01")},
+                new Post{Id=2, title="Another Article", newsContent=strNews, publishedBy="Priya Jose", publishedOn=Convert.ToDateTime("2019-02-02")},
+                new Post{Id=3, title="A Third Article", newsContent=strNews, publishedBy="Hanna Jose", publishedOn=Convert.ToDateTime("2019-03-03")},
             };
 
             return View(p);
         }
-
-        // Exercise: Create a view called Add which gives a page: "I am in add page."
+        
+        // Adding a keyword to assign an action method to a specific HTTP request
+        [HttpGet]
         public IActionResult Add()
+        {
+            Post p = new Post();
+
+            return View(p);
+        }
+
+        [HttpPost]
+        public IActionResult Add(Post p)
         {
             return View();
         }
 
-        // Exercise: Create a view called Edit which gives a page: "I am in edit page."
         public IActionResult Edit()
         {
             return View();
         }
 
-        // Exercise: Create a view called Delete which gives a page: "I am in delete page."
         public IActionResult Delete()
         {
             return View();

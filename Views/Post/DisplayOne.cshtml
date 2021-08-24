@@ -1,0 +1,29 @@
+﻿<!-- _ViewStart.cshtml contains the boilerplate to be used for all views. -->
+<!-- Define the model to be used in this view -->
+@model Session05ArchitectureMVC.Models.Post
+
+<h2>Display data from the Model</h2>
+<table class="table table-striped table-dark">
+    <!-- This is written in the HTML Helper syntax -->
+    <tr>
+        <th>@Html.LabelFor(m => m.Id)</th>
+        <td>@Html.DisplayFor(m => m.Id)</td>
+        <!-- (you can also use EditorFor to create an input field) -->
+    </tr>
+    <tr>
+        <th>@Html.LabelFor(m => m.title)</th>
+        <td>@Html.DisplayFor(m => m.title)</td>
+    </tr>
+    <tr>
+        <th>@Html.LabelFor(m => m.newsContent)</th>
+        <td>@Html.DisplayFor(m => m.newsContent)</td>
+    </tr>
+    <tr>
+        <th>@Html.LabelFor(m => m.publishedBy)</th>
+        <td>@Html.DisplayFor(m => m.publishedBy)</td>
+    </tr>
+    <tr>
+        <th>@Html.LabelFor(m => m.publishedOn)</th>
+        <td>@Html.DisplayFor(m => m.publishedOn)</td>
+    </tr>
+</table>
