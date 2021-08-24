@@ -21,10 +21,26 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <!-- ActionLink takes the following arguments: link text, action method, controller, routevalues (here null), can add attributes -->
-                        <li class="nav-item">@Html.ActionLink("Add Page", "Add", "Post", null, new { title = "Go to the add page." })</li>
-                        <li class="nav-item">@Html.ActionLink("Display Page", "Display", "Post", null, new { title = "Go to the display page." })</li>
-                        <li class="nav-item">@Html.ActionLink("Edit Page", "Edit", "Post", null, new { title = "Go to the edit page." })</li>
-                        <li class="nav-item">@Html.ActionLink("Delete Page", "Delete", "Post", null, new { title = "Go to the delete page." })</li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Add Page", "Add", "Post",
+                                new { title = "Go to the add page." },
+                                new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Display Page", "Display", "Post",
+                                new { title = "Go to the display page." },
+                                new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Edit Page", "Edit", "Post",
+                                new { title = "Go to the edit page." },
+                                new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Delete Page", "Delete", "Post",
+                                new { title = "Go to the delete page." },
+                                new { @class = "nav-link" })
+                        </li>
                     </ul>
                 </div>
             </div>
