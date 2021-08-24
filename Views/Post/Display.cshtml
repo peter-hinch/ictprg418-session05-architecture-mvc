@@ -90,26 +90,17 @@
         </td>
     </tr>
     <tr>
-        <th>@Html.LabelFor(m => m.gender)</th>
+        <th><label asp-for="gender"></label></th>
         <td>
-            Male
             @if (Model.gender == "Male")
             {
-                @Html.RadioButtonFor(m => m.gender, "Male", new { @checked = "checked" })
+                @Html.Label("Male")<input asp-for="gender" type="radio" value="Male" checked />
+                @Html.Label("Female")<input asp-for="gender" type="radio" value="Female" />
             }
-            else
+            else if (Model.gender == "Female")
             {
-                @Html.RadioButtonFor(m => m.gender, "Female")
-            }
-            &nbsp;
-            Female
-            @if (Model.gender == "Female")
-            {
-                @Html.RadioButtonFor(m => m.gender, "Female", new { @checked = "checked" })
-            }
-            else
-            {
-                @Html.RadioButtonFor(m => m.gender, "Male")
+                @Html.Label("Male")<input asp-for="gender" type="radio" value="Male" />
+                @Html.Label("Female")<input asp-for="gender" type="radio" value="Female" checked />
             }
         </td>
     </tr>
