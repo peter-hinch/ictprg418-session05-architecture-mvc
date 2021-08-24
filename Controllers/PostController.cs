@@ -58,7 +58,7 @@ namespace Session05ArchitectureMVC.Controllers
         [HttpGet]
         public IActionResult Add()
         {
-            Post p = new Post();
+            Post p = new Post { publishedOn = DateTime.Now };
 
             return View(p);
         }
