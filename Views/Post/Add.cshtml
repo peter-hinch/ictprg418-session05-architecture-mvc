@@ -6,7 +6,7 @@
     <h2>Add data to the Model</h2>
     @using (Html.BeginForm())
     {
-        <table class="table table-striped table-dark">
+        <table class="table">
             <!-- This is written in the HTML Helper syntax -->
             <tr>
                 <th>@Html.LabelFor(m => m.Id)</th>
@@ -29,6 +29,6 @@
                 <td>@Html.EditorFor(m => m.publishedOn)</td>
             </tr>
         </table>
-        <button type="submit">Add</button>
+        <button type="submit" class="btn btn-primary">Add</button>
     }
 </article>
