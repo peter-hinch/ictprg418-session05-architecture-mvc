@@ -83,15 +83,16 @@ namespace Session05ArchitectureMVC.Controllers
         private void FillArray(Post p1)
         {
             SelectListItem item = new SelectListItem();
-            
             item.Text = "Australia";
             item.Value = "Au";
             p1.listP.Add(item);
 
+            item = new SelectListItem();
             item.Text = "United Kingdom";
             item.Value = "UK";
             p1.listP.Add(item);
 
+            item = new SelectListItem();
             item.Text = "United States";
             item.Value = "US";
             p1.listP.Add(item);

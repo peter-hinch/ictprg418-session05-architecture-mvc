@@ -29,6 +29,10 @@
         <th>@Html.LabelFor(m => m.publishedOn)</th>
         <td>@Html.DisplayFor(m => m.publishedOn)</td>
     </tr>
+    <tr>
+        <th>@Html.LabelFor(m => m.listP)</th>
+        <td>@Html.DropDownListFor(m => m.listP, new SelectList(Model.listP, "Value", "Text"), "Select a value", new { @class = "form-control" })</td>
+    </tr>
 </table>
 
 <h3>Table created using Tag Helper syntax</h3>
