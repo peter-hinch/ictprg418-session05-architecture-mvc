@@ -2,3 +2,30 @@
 
 <!-- Define the model to be used in this view -->
 @model Session05ArchitectureMVC.Models.Post
+
+<table class="table table-striped table-dark">
+    <tr>
+        <th>@Html.LabelFor(m => m.Id)</th>
+        <td>@Html.EditorFor(m => m.Id)</td>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr>
+        <th>@Html.LabelFor(m => m.title)</th>
+        <td>@Html.EditorFor(m => m.title)</td>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr>
+        <th>@Html.LabelFor(m => m.publishedBy)</th>
+        <td>@Html.EditorFor(m => m.publishedBy)</td>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr>
+        <th>@Html.LabelFor(m => m.publishedOn)</th>
+        <td>@Html.EditorFor(m => m.publishedOn)</td>
+        <th></th>
+        <th></th>
+    </tr>
+</table>
