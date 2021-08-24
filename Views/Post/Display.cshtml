@@ -1,5 +1,4 @@
 ﻿<!-- _ViewStart.cshtml contains the boilerplate to be used for all views. -->
-
 <!-- Define the model to be used in this view -->
 @model Session05ArchitectureMVC.Models.Post
 
@@ -57,5 +56,13 @@
     <tr>
         <th><label asp-for="publishedOn"></label></th>
         <td>@Model.publishedOn</td>
+    </tr>
+    <tr>
+        <th><label asp-for="publishedOn"></label></th>
+        <td>
+            <select asp-items="@(new SelectList(@Model.listP, "Value", "Text"))" class="form-control">
+                <option>Select a Value</option>
+            </select>
+        </td>
     </tr>
 </table>
