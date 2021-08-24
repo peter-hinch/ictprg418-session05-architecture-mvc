@@ -3,29 +3,55 @@
 <!-- Define the model to be used in this view -->
 @model Session05ArchitectureMVC.Models.Post
 
+<h2>Display data from the Model</h2>
+
+<h3>Table created using HTML Helper syntax</h3>
 <table class="table table-striped table-dark">
+    <!-- This is written in the HTML Helper syntax -->
     <tr>
         <th>@Html.LabelFor(m => m.Id)</th>
-        <td>@Html.EditorFor(m => m.Id)</td>
-        <th></th>
-        <th></th>
+        <td>@Html.DisplayFor(m => m.Id)</td>
+        <!-- (you can also use EditorFor to create an input field) -->
     </tr>
     <tr>
         <th>@Html.LabelFor(m => m.title)</th>
-        <td>@Html.EditorFor(m => m.title)</td>
-        <th></th>
-        <th></th>
+        <td>@Html.DisplayFor(m => m.title)</td>
+    </tr>
+    <tr>
+        <th>@Html.LabelFor(m => m.newsContent)</th>
+        <td>@Html.DisplayFor(m => m.newsContent)</td>
     </tr>
     <tr>
         <th>@Html.LabelFor(m => m.publishedBy)</th>
-        <td>@Html.EditorFor(m => m.publishedBy)</td>
-        <th></th>
-        <th></th>
+        <td>@Html.DisplayFor(m => m.publishedBy)</td>
     </tr>
     <tr>
         <th>@Html.LabelFor(m => m.publishedOn)</th>
-        <td>@Html.EditorFor(m => m.publishedOn)</td>
-        <th></th>
-        <th></th>
+        <td>@Html.DisplayFor(m => m.publishedOn)</td>
+    </tr>
+</table>
+
+<h3>Table created using Tag Helper syntax</h3>
+<table class="table table-striped table-dark">
+    <!-- This is the same using Tag Helper syntax -->
+    <tr>
+        <th><label asp-for="Id"></label></th>
+        <td>@Model.Id</td>
+    </tr>
+    <tr>
+        <th><label asp-for="title"></label></th>
+        <td>@Model.title</td>
+    </tr>
+    <tr>
+        <th><label asp-for="newsContent"></label></th>
+        <td>@Model.newsContent</td>
+    </tr>
+    <tr>
+        <th><label asp-for="publishedBy"></label></th>
+        <td>@Model.publishedBy</td>
+    </tr>
+    <tr>
+        <th><label asp-for="publishedOn"></label></th>
+        <td>@Model.publishedOn</td>
     </tr>
 </table>
