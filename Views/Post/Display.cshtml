@@ -32,6 +32,30 @@
         <th>@Html.LabelFor(m => m.listP)</th>
         <td>@Html.DropDownListFor(m => m.listP, new SelectList(Model.listP, "Value", "Text"), "Select a value", new { @class = "form-control" })</td>
     </tr>
+    <tr>
+        <th>@Html.LabelFor(m => m.gender)</th>
+        <td>
+            Male
+            @if (Model.gender == "Male")
+            {
+                @Html.RadioButtonFor(m => m.gender, "Male", new { @checked = "checked" })
+            }
+            else
+            {
+                @Html.RadioButtonFor(m => m.gender, "Female")
+            }
+            &nbsp;
+            Female
+            @if (Model.gender == "Female")
+            {
+                @Html.RadioButtonFor(m => m.gender, "Female", new { @checked = "checked" })
+            }
+            else
+            {
+                @Html.RadioButtonFor(m => m.gender, "Male")
+            }
+        </td>
+    </tr>
 </table>
 
 <h3>Table created using Tag Helper syntax</h3>
@@ -58,11 +82,35 @@
         <td>@Model.publishedOn</td>
     </tr>
     <tr>
-        <th><label asp-for="publishedOn"></label></th>
+        <th><label asp-for="listP"></label></th>
         <td>
             <select asp-items="@(new SelectList(@Model.listP, "Value", "Text"))" class="form-control">
                 <option>Select a Value</option>
             </select>
+        </td>
+    </tr>
+    <tr>
+        <th>@Html.LabelFor(m => m.gender)</th>
+        <td>
+            Male
+            @if (Model.gender == "Male")
+            {
+                @Html.RadioButtonFor(m => m.gender, "Male", new { @checked = "checked" })
+            }
+            else
+            {
+                @Html.RadioButtonFor(m => m.gender, "Female")
+            }
+            &nbsp;
+            Female
+            @if (Model.gender == "Female")
+            {
+                @Html.RadioButtonFor(m => m.gender, "Female", new { @checked = "checked" })
+            }
+            else
+            {
+                @Html.RadioButtonFor(m => m.gender, "Male")
+            }
         </td>
     </tr>
 </table>
