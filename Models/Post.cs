@@ -12,8 +12,6 @@ namespace Session05ArchitectureMVC.Models
         // Add [keywords] using System.ComponentModel.DataAnnotations
         // Validation can also be applied using decorator keywords
         [Key]
-        [Range(1,1000, ErrorMessage = "ID should be between 1 and 1000")]
-        [Required(ErrorMessage = "ID is a required field")]
         public long Id { get; set; }
 
         [Display(Name ="Subject")]

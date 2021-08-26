@@ -13,12 +13,6 @@
                     @Html.ValidationSummary()
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">@Html.LabelFor(m => m.Id)</label>
-                    <!-- To add classes to an EditorFor, you must add new htmlAttributes -->
-                    @Html.EditorFor(m => m.Id, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(m => m.Id)
-                </div>
-                <div class="mb-3">
                     <label class="form-label">@Html.LabelFor(m => m.title)</label>
                     @Html.EditorFor(m => m.title, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(m => m.title)
