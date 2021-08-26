@@ -81,6 +81,12 @@ namespace Session05ArchitectureMVC.Controllers
         [HttpPost]
         public IActionResult Edit(Post p)
         {
+            // Ensure fields are valid.
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
             // Inform Entity Framework that the data for this entry has been modified.
             _db.Entry(p).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             _db.SaveChanges();
