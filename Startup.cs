@@ -17,13 +17,14 @@ namespace Session05ArchitectureMVC
     {
         // This file is the entry point of our project.
 
-        // Declare a configuration variable.
+        // Declare a configuration variable. Readonly means it can only be
+        // modified in the constructor.
         private readonly IConfigurationRoot configuration;
 
         // Create a constructor for configuration information.
         public Startup(IWebHostEnvironment env)
         {
-            var configuration = new ConfigurationBuilder()
+            configuration = new ConfigurationBuilder()
                 .AddEnvironmentVariables()
                 // We can get the content root from the env object
                 .AddJsonFile(env.ContentRootPath + "/config.json")
@@ -41,12 +42,15 @@ namespace Session05ArchitectureMVC
             // - Microsoft.EntityFrameworkCore 
             // - Microsoft.AspNetCore.Identity.EntityFrameworkCore
             // - Microsoft.EntityFrameworkCore.SqlServer
+
+            // Add the database context.
             services.AddDbContext<TableDataContext>(options =>
             {
                 // Retrieve the connection string from the config.json file.
                 var connectionString = configuration.GetConnectionString("PostConnection");
                 // using Microsoft.EntityFrameworkCore;
-                options.UseSqlServer();
+                // Add the SQL server to the options object.
+                options.UseSqlServer(connectionString);
             });
         }
 

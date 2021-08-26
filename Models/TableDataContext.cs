@@ -11,11 +11,12 @@ namespace Session05ArchitectureMVC.Models
     public class TableDataContext : IdentityDbContext
     {
         // Field must have the same name as the table name.
-        DbSet<Post> post { get; set; }
+        public DbSet<Post> post { get; set; }
 
         // Use : base(options) will pass the options through to the base class.
         public TableDataContext(DbContextOptions<TableDataContext> options) : base(options)
         {
+            // Ensure that the database has been created.
             Database.EnsureCreated();
         }
     }

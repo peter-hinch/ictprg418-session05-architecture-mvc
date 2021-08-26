@@ -11,15 +11,11 @@ namespace Session05ArchitectureMVC.Controllers
     public class PostController : Controller
     {
         List<Post> p;
+        private readonly TableDataContext _db;
 
-        public PostController()
+        public PostController(TableDataContext db)
         {
-            p = new List<Post>
-            {
-                new Post{Id=1, title="News Article", newsContent="Here is a wonderful news article.", publishedBy="Jose Chacko", publishedOn=Convert.ToDateTime("2019-01-01")},
-                new Post{Id=2, title="Another Article", newsContent="This is another informative news article.", publishedBy="Priya Jose", publishedOn=Convert.ToDateTime("2019-02-02")},
-                new Post{Id=3, title="A Third Article", newsContent="Wouldn't you know it? Here's another article, with the same high quality writing as the other two.", publishedBy="Hanna Jose", publishedOn=Convert.ToDateTime("2019-03-03")},
-            };
+            _db = db;
         }
         
         public IActionResult Index()
@@ -40,7 +36,9 @@ namespace Session05ArchitectureMVC.Controllers
         }
 
         public IActionResult Display()
-        { 
+        {
+            p = _db.post.ToList<Post>();
+            
             return View(p);
         }
         
@@ -62,15 +60,20 @@ namespace Session05ArchitectureMVC.Controllers
             {
                 return View();
             }
+            
+            // Add the new post to the post table and save changes.
+            _db.post.Add(p2);
+            _db.SaveChanges();
 
-            this.p.Add(p2);
-
-            return View("Display", p);
+            return RedirectToAction("Display");
         }
 
-        public IActionResult Edit()
+        [HttpGet]
+        public IActionResult Edit(long Id)
         {
-            return View();
+            Post p = _db.post.Find(Id);
+            
+            return View(p);
         }
 
         public IActionResult Delete()
