@@ -71,9 +71,21 @@ namespace Session05ArchitectureMVC.Controllers
         [HttpGet]
         public IActionResult Edit(long Id)
         {
+            // Find the corresponding post entry in the database.
             Post p = _db.post.Find(Id);
             
+            // Return the view with the post information.
             return View(p);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Post p)
+        {
+            // Inform Entity Framework that the data for this entry has been modified.
+            _db.Entry(p).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _db.SaveChanges();
+
+            return RedirectToAction("Display");
         }
 
         public IActionResult Delete()
