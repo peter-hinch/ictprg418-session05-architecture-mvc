@@ -95,13 +95,10 @@ namespace Session05ArchitectureMVC.Controllers
         }
 
         [HttpGet]
-        public IActionResult Delete(long id)
+        public IActionResult Delete(long Id)
         {
-            // Reference: https://stackoverflow.com/questions/2471433/how-to-delete-an-object-by-id-with-entity-framework
-            // Create a new Post object using the id and attach it to the _db
-            // instance. Then remove the post and save changes.
-            Post p = new Post() { Id = id };
-            _db.post.Attach(p);
+            // Find the post by Id, then remove the post and save changes.
+            Post p = _db.post.Find(Id);
             _db.post.Remove(p);
 
             _db.SaveChanges();
