@@ -20,6 +20,11 @@ namespace Session05ArchitectureMVC
         {
             // Register MVC design pattern
             services.AddMvc();
+
+            // Entity Framework requires the following dependencies to be installed:
+            // - Microsoft.EntityFrameworkCore 
+            // - Microsoft.AspNetCore.Identity.EntityFrameworkCore
+            // - Microsoft.EntityFrameworkCore.SqlServer
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

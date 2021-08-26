@@ -57,6 +57,12 @@ namespace Session05ArchitectureMVC.Controllers
         [HttpPost]
         public IActionResult Add(Post p2)
         {
+            // Ensure fields are valid before posting.
+            if(!ModelState.IsValid)
+            {
+                return View();
+            }
+
             this.p.Add(p2);
 
             return View("Display", p);
