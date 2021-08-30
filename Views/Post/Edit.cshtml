@@ -1,5 +1,42 @@
 ﻿<!-- _ViewStart.cshtml contains the boilerplate to be used for all views. -->
+<!-- Define the model to be used in this view -->
+@model Session05ArchitectureMVC.Models.Post
 
 <article>
-    <p>I am in edit page.</p>
+    <h2>Edit data in the Model</h2>
+    @using (Html.BeginForm())
+    {
+        <!-- This is written in the HTML Helper syntax -->
+        <div class="row">
+            <div class="col-lg-5 col-md-6 col-sm-8">
+                <div class="mb-3">
+                    @Html.ValidationSummary()
+                </div>
+                @* Hidden field for Id *@    
+                @Html.HiddenFor(m => m.Id)
+            <div class="mb-3">
+                <label class="form-label">@Html.LabelFor(m => m.title)</label>
+                @* To add classes to an EditorFor, you must add new htmlAttributes *@
+                @Html.EditorFor(m => m.title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(m => m.title)
+            </div>
+                <div class="mb-3">
+                    <label class="form-label">@Html.LabelFor(m => m.newsContent)</label>
+                    @Html.EditorFor(m => m.newsContent, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => m.newsContent)
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">@Html.LabelFor(m => m.publishedBy)</label>
+                    @Html.EditorFor(m => m.publishedBy, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => m.publishedBy)
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">@Html.LabelFor(m => m.publishedOn)</label>
+                    @Html.EditorFor(m => m.publishedOn, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => m.publishedOn)
+                </div>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+        </div>
+    }
 </article>

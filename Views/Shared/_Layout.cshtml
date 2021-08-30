@@ -1,27 +1,52 @@
-﻿<header>
-    @* 1. HTMLhelper
-       2. TagHelper - requires - import refer to _ViewImports.cshtml *@
-    
-    <!-- Include bootstrap (can be dragged from solution explorer). -->
-    <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width-device-width, initial-scale=1" />
 
-    <h1>This is the header.</h1>
-    <ul>
-        <!-- ActionLink takes the following arguments:
-    link text, action method, controller, routevalues (here null), can add attributes -->
-        <li>@Html.ActionLink("Display Page", "Display", "Post", null, new { title = "Go to the display page." })</li>
-        <li>@Html.ActionLink("Add Page", "Add", "Post", null, new { title = "Go to the add page." })</li>
-        <li>@Html.ActionLink("Edit Page", "Edit", "Post", null, new { title = "Go to the edit page." })</li>
-        <!-- Alternatively, the same thing but with TagHelper -->
-        <!--<li><a asp-controller="Post" asp-action="Edit" title="Go to the edit page">Edit Page</a></li>-->
-        <li>@Html.ActionLink("Delete Page", "Delete", "Post", null, new { title = "Go to the delete page." })</li>
-    </ul>
-    
-</header>
-<main>
-    <!-- RenderBody() is used to place the view within the template -->
-    @RenderBody()
-</main>
-<footer>
-    <small>This is the footer.</small>
-</footer>
+    <!-- Include bootstrap CSS and JS (can be dragged from solution explorer). -->
+    <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <title>Project Name</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-md navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="#">Project Name</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <!-- ActionLink takes the following arguments: link text, action method, controller, routevalues (here null), can add attributes -->
+                        <li class="nav-item">
+                            @Html.ActionLink("Add Page", "Add", "Post",
+                                new { title = "Go to the add page." },
+                                new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Display Page", "Display", "Post",
+                                new { title = "Go to the display page." },
+                                new { @class = "nav-link" })
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <!-- RenderBody() is used to place the view within the template -->
+            @RenderBody()
+        </div>
+    </main>
+    <footer class="bg-light">
+        <div class="container">
+            <small>This is the footer.</small>
+        </div>
+    </footer>
+</body>
+</html>

@@ -10,110 +10,100 @@ namespace Session05ArchitectureMVC.Controllers
 {
     public class PostController : Controller
     {
-        // Exercise: Create a new controller called Post, with an action method Index.
-        // Exercise: Override the default route to make Post controller the top level URL.
-        //[Route("")]
+        List<Post> p;
+        private readonly TableDataContext _db;
+
+        public PostController(TableDataContext db)
+        {
+            _db = db;
+        }
+        
         public IActionResult Index()
         {
-            //return new ContentResult { Content = "My post controller (Index method)" };
-
             return View();
         }
 
-        // Exercise: Add another action method ShowPost in the post controller.
-        // Exercise: Show the post ID.
         [Route("p")] // this allows the URL to be shortened to simply ./p
         public IActionResult ShowPost(int id)
         {
             return new ContentResult { Content = "My post controller (ShowPost method), post ID: " + id };
         }
 
-        // Exercise: Define an action method which will accept multiple parameters.
         [Route("{year}/{month}/{key}")] // you can specify multiple arguments in the route
         public IActionResult ShowDate(int year, int month, string key)
         {
             return new ContentResult { Content = "Year: " + year + ", Month: " + month + ", Key: " + key };
         }
 
-        // Exercise: Create a view called Display which gives a page: "I am in display page."
         public IActionResult Display()
         {
-            // Add some information to the ViewBag, this is page based.
-            //ViewBag.title = "Something";
-            //ViewBag.content = "Here's some stuff";
-            //ViewBag.publishedOn = "2021-08-19";
-            //ViewBag.publishedBy = "Peter";
-
-            string strNews = null;
+            p = _db.post.ToList<Post>();
             
-            strNews += "(CNN)Fires are raging at a record rate in Brazil's Amazon rainforest, and scientists warn that it could strike a devastating blow to the fight against climate change.";
-
-            strNews += "The fires are burning at the highest rate since the country's space research center, the National Institute for Space Research (known by the abbreviation INPE), began tracking them in 2013, the center said Tuesday.";
-
-
-            strNews += "There have been 72,843 fires in Brazil this year, with more than half in the Amazon region, INPE said. That's more than an 80% increase compared with the same period last year.";
-
-            strNews += "The Amazon is often referred to as the planet's lungs, producing 20% of the oxygen in the Earth's atmosphere.";
-
-            strNews += "It is considered vital in slowing global warming, and it is home to uncountable species of fauna and flora. Roughly half the size of the United States, it is the largest rainforest on the planet.";
-
-            List<hobbies> h = new List<hobbies>
-            {
-                new hobbies{ bHobby = true, hName = "Cricket"},
-                new hobbies{ bHobby = true, hName = "Soccer"},
-                new hobbies{ bHobby = false, hName = "Tennis"},
-            };
-
-            Post p = new Post
-            {
-                Id = 1,
-                title = "Amazon News",
-                newsContent = strNews,
-                publishedBy = "Sophia Mark",
-                publishedOn = Convert.ToDateTime("2019-02-03"),
-                gender = "Female",
-                hobbies = h
-            };
-
-            FillArray(p);
+            return View(p);
+        }
+        
+        // Adding a keyword to assign an action method to a specific HTTP request
+        [HttpGet]
+        public IActionResult Add()
+        {
+            // Create a new Post object with the current timestamp prefilled.
+            Post p = new Post { publishedOn = DateTime.Now };
 
             return View(p);
         }
 
-        private void FillArray(Post p1)
+        [HttpPost]
+        public IActionResult Add(Post p2)
         {
-            SelectListItem item = new SelectListItem();
-            item.Text = "Australia";
-            item.Value = "Au";
-            p1.listP.Add(item);
+            // Ensure fields are valid before posting.
+            if(!ModelState.IsValid)
+            {
+                return View();
+            }
+            
+            // Add the new post to the post table and save changes.
+            _db.post.Add(p2);
+            _db.SaveChanges();
 
-            item = new SelectListItem();
-            item.Text = "United Kingdom";
-            item.Value = "UK";
-            p1.listP.Add(item);
-
-            item = new SelectListItem();
-            item.Text = "United States";
-            item.Value = "US";
-            p1.listP.Add(item);
+            return RedirectToAction("Display");
         }
 
-        // Exercise: Create a view called Add which gives a page: "I am in add page."
-        public IActionResult Add()
+        [HttpGet]
+        public IActionResult Edit(long Id)
         {
-            return View();
+            // Find the corresponding post entry in the database.
+            Post p = _db.post.Find(Id);
+            
+            // Return the view with the post information.
+            return View(p);
         }
 
-        // Exercise: Create a view called Edit which gives a page: "I am in edit page."
-        public IActionResult Edit()
+        [HttpPost]
+        public IActionResult Edit(Post p)
         {
-            return View();
+            // Ensure fields are valid.
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            // Inform Entity Framework that the data for this entry has been modified.
+            _db.Entry(p).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _db.SaveChanges();
+
+            return RedirectToAction("Display");
         }
 
-        // Exercise: Create a view called Delete which gives a page: "I am in delete page."
-        public IActionResult Delete()
+        [HttpGet]
+        public IActionResult Delete(long Id)
         {
-            return View();
+            // Find the post by Id, then remove the post and save changes.
+            Post p = _db.post.Find(Id);
+            _db.post.Remove(p);
+
+            _db.SaveChanges();
+
+            return RedirectToAction("Display");
         }
     }
 }

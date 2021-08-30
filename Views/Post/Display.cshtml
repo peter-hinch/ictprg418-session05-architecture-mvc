@@ -1,129 +1,35 @@
 ﻿<!-- _ViewStart.cshtml contains the boilerplate to be used for all views. -->
 <!-- Define the model to be used in this view -->
-@model Session05ArchitectureMVC.Models.Post
+@model IEnumerable<Session05ArchitectureMVC.Models.Post>
 
-<h2>Display data from the Model</h2>
+<article>
+    <h2>Display data from the Model</h2>
+    <table class="table">
+        <!-- This is written in the HTML Helper syntax -->
+        <tr>
+            <th>@Html.DisplayNameFor(m => m.Id)</th>
+            <th>@Html.DisplayNameFor(m => m.title)</th>
+            <th>@Html.DisplayNameFor(m => m.newsContent)</th>
+            <th>@Html.DisplayNameFor(m => m.publishedBy)</th>
+            <th>@Html.DisplayNameFor(m => m.publishedOn)</th>
+            <th></th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.title</td>
+                <td>@item.newsContent</td>
+                <td>@item.publishedBy</td>
+                <td>@item.publishedOn</td>
+                @* Add a links to edit and delete items. The links point to the 
+                   corresponding action method in the Post controller and passes
+                   the Id. *@
+                <td>@Html.ActionLink("Edit", "Edit", "Post", new { @id = item.Id })</td>
+                <td>@Html.ActionLink("Delete", "Delete", "Post", new { @id = item.Id })</td>
+            </tr>
 
-<h3>Table created using HTML Helper syntax</h3>
-<table class="table table-striped table-dark">
-    <!-- This is written in the HTML Helper syntax -->
-    <tr>
-        <th>@Html.LabelFor(m => m.Id)</th>
-        <td>@Html.DisplayFor(m => m.Id)</td>
-        <!-- (you can also use EditorFor to create an input field) -->
-    </tr>
-    <tr>
-        <th>@Html.LabelFor(m => m.title)</th>
-        <td>@Html.DisplayFor(m => m.title)</td>
-    </tr>
-    <tr>
-        <th>@Html.LabelFor(m => m.newsContent)</th>
-        <td>@Html.DisplayFor(m => m.newsContent)</td>
-    </tr>
-    <tr>
-        <th>@Html.LabelFor(m => m.publishedBy)</th>
-        <td>@Html.DisplayFor(m => m.publishedBy)</td>
-    </tr>
-    <tr>
-        <th>@Html.LabelFor(m => m.publishedOn)</th>
-        <td>@Html.DisplayFor(m => m.publishedOn)</td>
-    </tr>
-    <tr>
-        <th>@Html.LabelFor(m => m.listP)</th>
-        <td>@Html.DropDownListFor(m => m.listP, new SelectList(Model.listP, "Value", "Text"), "Select a value", new { @class = "form-control" })</td>
-    </tr>
-    <tr>
-        <th>@Html.LabelFor(m => m.gender)</th>
-        <td>
-            Male
-            @if (Model.gender == "Male")
-            {
-                @Html.RadioButtonFor(m => m.gender, "Male", new { @checked = "checked" })
-            }
-            else
-            {
-                @Html.RadioButtonFor(m => m.gender, "Female")
-            }
-            &nbsp;
-            Female
-            @if (Model.gender == "Female")
-            {
-                @Html.RadioButtonFor(m => m.gender, "Female", new { @checked = "checked" })
-            }
-            else
-            {
-                @Html.RadioButtonFor(m => m.gender, "Male")
-            }
-        </td>
-    </tr>
-    <tr>
-        <th>@Html.LabelFor(m => m.hobbies)</th>
-        <td>
-            <ul class="list-group">
-            @foreach(var item in Model.hobbies)
-            {
-                <li class="list-group-item">@Html.CheckBoxFor(m => item.bHobby) @item.hName</li>
-            }
-            </ul>
-        </td>
-    </tr>
-</table>
-
-<h3>Table created using Tag Helper syntax</h3>
-<table class="table table-striped table-dark">
-    <!-- This is the same using Tag Helper syntax -->
-    <tr>
-        <th><label asp-for="Id"></label></th>
-        <td>@Model.Id</td>
-    </tr>
-    <tr>
-        <th><label asp-for="title"></label></th>
-        <td>@Model.title</td>
-    </tr>
-    <tr>
-        <th><label asp-for="newsContent"></label></th>
-        <td>@Model.newsContent</td>
-    </tr>
-    <tr>
-        <th><label asp-for="publishedBy"></label></th>
-        <td>@Model.publishedBy</td>
-    </tr>
-    <tr>
-        <th><label asp-for="publishedOn"></label></th>
-        <td>@Model.publishedOn</td>
-    </tr>
-    <tr>
-        <th><label asp-for="listP"></label></th>
-        <td>
-            <select asp-items="@(new SelectList(@Model.listP, "Value", "Text"))" class="form-control">
-                <option>Select a Value</option>
-            </select>
-        </td>
-    </tr>
-    <tr>
-        <th><label asp-for="gender"></label></th>
-        <td>
-            @if (Model.gender == "Male")
-            {
-                @Html.Label("Male")<input asp-for="gender" type="radio" value="Male" checked />
-                @Html.Label("Female")<input asp-for="gender" type="radio" value="Female" />
-            }
-            else if (Model.gender == "Female")
-            {
-                @Html.Label("Male")<input asp-for="gender" type="radio" value="Male" />
-                @Html.Label("Female")<input asp-for="gender" type="radio" value="Female" checked />
-            }
-        </td>
-    </tr>
-    <tr>
-        <th><label asp-for="hobbies"></label></th>
-        <td>
-            <ul class="list-group">
-            @foreach (var item in Model.hobbies)
-            {
-                <li class="list-group-item"><input asp-for="@item.bHobby" type="checkbox" value="@item.hName"/> @item.hName</li>
-            }
-            </ul>
-        </td>
-    </tr>
-</table>
+        }
+    </table>
+</article>
