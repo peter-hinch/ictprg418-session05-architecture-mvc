@@ -37,11 +37,44 @@ namespace Session05ArchitectureMVC.Controllers
 
         public IActionResult Display()
         {
+            // Display all the Post objects.
+            /*
             p = _db.post.ToList<Post>();
-            
+
             return View(p);
+            */
+
+            // Alternatively, the query can be made using LINQ.
+            //var p1 = from v in _db.post select v;
+
+            // LINQ can also be used to modify entries as they are retrieved:
+            var p1 = from v1 in _db.post
+                     join v2 in _db.department
+                     on v1.Id equals v2.postId
+                     select new
+                     {
+                         Id1 = v1.Id,
+                         newsContent1 = v1.title + " (" + v2.deptName + ")",
+                         publishedOn1 = v1.publishedOn,
+                         publishedBy1 = v1.publishedBy
+                     };
+
+            List<Post> p3 = new List<Post>();
+            foreach(var p2 in p1)
+            {
+                p3.Add(new Post
+                    {
+                        Id = p2.Id1,
+                        newsContent = p2.newsContent1,
+                        publishedOn = p2.publishedOn1,
+                        publishedBy = p2.publishedBy1
+                    }
+                ); ;
+            }
+
+            return View(p3.ToList<Post>());
         }
-        
+
         // Adding a keyword to assign an action method to a specific HTTP request
         [HttpGet]
         public IActionResult Add()
@@ -72,10 +105,16 @@ namespace Session05ArchitectureMVC.Controllers
         public IActionResult Edit(long Id)
         {
             // Find the corresponding post entry in the database.
-            Post p = _db.post.Find(Id);
-            
+            //Post p = _db.post.Find(Id);
+
             // Return the view with the post information.
-            return View(p);
+            //return View(p);
+
+            // Alternatively, the same can be achieved with LINQ.
+            var p1 = from v in _db.post where v.Id == Id select v;
+
+            // Return the first result.
+            return View(p1.FirstOrDefault<Post>());
         }
 
         [HttpPost]

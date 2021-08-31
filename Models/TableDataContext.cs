@@ -13,6 +13,8 @@ namespace Session05ArchitectureMVC.Models
         // Field must have the same name as the table name.
         public DbSet<Post> post { get; set; }
 
+        public DbSet<Department> department { get; set; }
+
         // Use : base(options) will pass the options through to the base class.
         public TableDataContext(DbContextOptions<TableDataContext> options) : base(options)
         {
