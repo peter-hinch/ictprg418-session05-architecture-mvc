@@ -48,6 +48,7 @@ namespace Session05ArchitectureMVC.Controllers
             //var p1 = from v in _db.post select v;
 
             // LINQ can also be used to modify entries as they are retrieved:
+            /*
             var p1 = from v1 in _db.post
                      join v2 in _db.department
                      on v1.Id equals v2.postId
@@ -69,6 +70,33 @@ namespace Session05ArchitectureMVC.Controllers
                         publishedOn = p2.publishedOn1,
                         publishedBy = p2.publishedBy1
                     }
+                ); ;
+            }
+            */
+
+            var p1 = from v1 in _db.post
+                     join v2 in _db.department
+                     on v1.Id equals v2.postId into eGroup
+                     from v2 in eGroup.DefaultIfEmpty()
+
+                     select new
+                     {
+                         Id1 = v1.Id,
+                         newsContent1 = v1.title + " (" + v2.deptName + ")",
+                         publishedOn1 = v1.publishedOn,
+                         publishedBy1 = v1.publishedBy
+                     };
+
+            List<Post> p3 = new List<Post>();
+            foreach (var p2 in p1)
+            {
+                p3.Add(new Post
+                {
+                    Id = p2.Id1,
+                    newsContent = p2.newsContent1,
+                    publishedOn = p2.publishedOn1,
+                    publishedBy = p2.publishedBy1
+                }
                 ); ;
             }
 
@@ -105,14 +133,14 @@ namespace Session05ArchitectureMVC.Controllers
         public IActionResult Edit(long Id)
         {
             // Find the corresponding post entry in the database.
-            //Post p = _db.post.Find(Id);
+            Post p = _db.post.Find(Id);
 
             // Return the view with the post information.
-            //return View(p);
+            return View(p);
 
             // Alternatively, the same can be achieved with LINQ.
             var p1 = from v in _db.post where v.Id == Id select v;
-
+            
             // Return the first result.
             return View(p1.FirstOrDefault<Post>());
         }
@@ -126,9 +154,21 @@ namespace Session05ArchitectureMVC.Controllers
                 return View();
             }
 
+            var p1 = from v in _db.post where v.Id == p.Id select v;
+            List<Post> list = p1.ToList<Post>();
+
+            foreach(Post p4 in list)
+            {
+                p4.title += " (Updated)";
+                _db.Entry(p4).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                _db.SaveChanges();
+            }
+
             // Inform Entity Framework that the data for this entry has been modified.
+            /*
             _db.Entry(p).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             _db.SaveChanges();
+            */
 
             return RedirectToAction("Display");
         }
