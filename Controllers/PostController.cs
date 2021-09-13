@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Session05ArchitectureMVC.Models;
 using System;
@@ -37,6 +38,10 @@ namespace Session05ArchitectureMVC.Controllers
 
         public IActionResult Display()
         {
+            // Session [""]
+            HttpContext.Session.SetString("userID", "MyValueOrObject");
+            int x = 0;
+            
             // Display all the Post objects.
             /*
             p = _db.post.ToList<Post>();

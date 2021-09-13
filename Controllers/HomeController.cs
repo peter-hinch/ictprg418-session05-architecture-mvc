@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,8 @@ namespace Session05ArchitectureMVC.Controllers
     {
         public IActionResult Index()
         {
+            string myString = HttpContext.Session.GetString("userID"); // string myString = Session["userID"].ToString();
+
             // A method with return type IActionResult can return any of the following:
             // ContentResult, FileContentResult, FilePathResult, FileStreamResult,
             // EmptyResult, JavaScriptResult, JsonResult, RedirectToResult,

@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Session05ArchitectureMVC.Models.Post>
+<h3>Post Summary</h3>
+<table class="table-bordered">
+    <thead class="thead-light">
+        <tr>
+            <th>Post ID</th>
+            <th>Post Title</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var i in Model)
+        {
+            <tr><td>@i.Id</td><td>@i.title</td></tr>
+        }
+    </tbody>
+</table>

@@ -28,8 +28,14 @@
                    the Id. *@
                 <td>@Html.ActionLink("Edit", "Edit", "Post", new { @id = item.Id })</td>
                 <td>@Html.ActionLink("Delete", "Delete", "Post", new { @id = item.Id })</td>
+                @* Example of a partial view: *@
+                <td><partial name="_DisplayPostPartial" model="item" /></td>
             </tr>
 
         }
     </table>
+    <div>
+        @* Add a ViewComponent*@
+        @await Component.InvokeAsync("Post")
+    </div>
 </article>

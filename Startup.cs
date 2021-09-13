@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -35,7 +36,7 @@ namespace Session05ArchitectureMVC
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            // Register MVC design pattern
+            // Register MVC design pattern.
             services.AddMvc();
 
             // Entity Framework requires the following dependencies to be installed:
@@ -52,6 +53,18 @@ namespace Session05ArchitectureMVC
                 // Add the SQL server to the options object.
                 options.UseSqlServer(connectionString);
             });
+
+            // Add database migration service.
+            // Requires installation of Microsoft.EntityFrameworkCore.Tools
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<TableDataContext>()
+                .AddDefaultTokenProviders();
+
+            services.AddTransient<IPostRepository, PostRepository>();
+
+            // For session variables
+            services.AddDistributedMemoryCache();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,6 +75,9 @@ namespace Session05ArchitectureMVC
                 app.UseDeveloperExceptionPage();
             }
 
+            // For session variables
+            app.UseSession();
+
             // Middleware
             app.UseRouting();
 
@@ -69,8 +85,12 @@ namespace Session05ArchitectureMVC
             {
                 // Specifying 'Home' will look for the 'HomeController.cs'
                 // controller and the 'Index()' method.
-                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute("default", "{controller=Account}/{action=Register}/{id?}");
             });
+
+            // Added when using database migration.
+            // NOTE: Order is important, place before UseFileServer().
+            app.UseAuthentication();
 
             app.UseFileServer();
         }
