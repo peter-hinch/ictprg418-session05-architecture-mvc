@@ -80,8 +80,30 @@ namespace Session05ArchitectureMVC.Controllers
             ManageRoleViewModel mRole = new ManageRoleViewModel();
             FillArray(mRole);
 
-
             return View(mRole);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ManageRole(ManageRoleViewModel mRole)
+        {
+            // Find user and role.
+            var role = await roleManager.FindByIdAsync(mRole.roleId);
+            var user = await userManager.FindByIdAsync(mRole.userId);
+
+            // If either is null, return an error.
+            if( role == null || user == null)
+            {
+                return View("Not found");
+            }
+
+            // If this role to user association does not already exist, set the
+            // new associtation.
+            if( !(await userManager.IsInRoleAsync(user, role.Name)) )
+            {
+                var result = await userManager.AddToRoleAsync(user, role.Name);
+            }
+            
+            return View("Display", roleManager.Roles);
         }
 
         // Private function to populate dropdown elements for ManageRole

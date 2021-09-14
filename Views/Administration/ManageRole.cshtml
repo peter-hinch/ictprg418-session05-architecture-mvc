@@ -1,0 +1,37 @@
+﻿@model Session05ArchitectureMVC.ViewModels.ManageRoleViewModel
+
+<h1>Manage Role</h1>
+
+<fieldset>
+    @using (Html.BeginForm())
+    {
+        <table>
+            <tr>
+                <td>@Html.LabelFor(m => m.userList)</td>
+                <td>
+                    @Html.DropDownListFor(
+                       m => m.userId,
+                       new SelectList(Model.userList, "Value", "Text"),
+                       "Select a user",
+                       new { @class="form-controle"}
+                    )
+                </td>
+                <td>
+                    @Html.DropDownListFor(
+                       m => m.roleId,
+                       new SelectList(Model.roleList, "Value", "Text"),
+                       "Select a role",
+                       new { @class="form-controle"}
+                    )
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button type="submit">Add Role to User</button>
+                </td>
+                <td></td>
+            </tr>
+        </table>
+    }
+</fieldset>
