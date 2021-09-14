@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Session05ArchitectureMVC.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -71,6 +72,48 @@ namespace Session05ArchitectureMVC.Controllers
             }
 
             return View("Display", roleManager.Roles);
+        }
+
+        [HttpGet]
+        public IActionResult ManageRole()
+        {
+            ManageRoleViewModel mRole = new ManageRoleViewModel();
+            FillArray(mRole);
+
+
+            return View(mRole);
+        }
+
+        // Private function to populate dropdown elements for ManageRole
+        // action method.
+        private void FillArray(
+            ManageRoleViewModel mRole)
+        {
+            // Populate a dropdown with user information
+            var users = userManager.Users;
+            mRole.userList = new List<SelectListItem>();
+
+            foreach( var user in users)
+            {
+                // Generate select list items and assign text and value to
+                // each
+                SelectListItem item = new SelectListItem();
+                item.Text = user.UserName;
+                item.Value = user.Id;
+            }
+            
+            // Populate a dropdown with role information
+            var roles = roleManager.Roles;
+            mRole.roleList = new List<SelectListItem>();
+
+            foreach( var role in roles)
+            {
+                // Generate select list items and assign text and value to
+                // each
+                SelectListItem item = new SelectListItem();
+                item.Text = role.Name;
+                item.Value = role.Id;
+            }
         }
     }
 }
