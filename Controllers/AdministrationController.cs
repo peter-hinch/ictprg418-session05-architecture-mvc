@@ -22,6 +22,11 @@ namespace Session05ArchitectureMVC.Controllers
             roleManager = _roleManager;
         }
 
+        public IActionResult Index()
+        {
+            return View();
+        }
+
         [HttpGet]
         public IActionResult CreateRole()
         {
@@ -54,9 +59,18 @@ namespace Session05ArchitectureMVC.Controllers
             return View("Display", roleManager.Roles);
         }
 
-        public IActionResult Index()
+        [HttpGet]
+        public async Task<IActionResult> Delete(string roleId)
         {
-            return View();
+            var role = await roleManager.FindByIdAsync(roleId);
+            IdentityResult result = await roleManager.DeleteAsync(role);
+
+            foreach (IdentityError error in result.Errors)
+            {
+                ModelState.AddModelError("key", error.Description);
+            }
+
+            return View("Display", roleManager.Roles);
         }
     }
 }
