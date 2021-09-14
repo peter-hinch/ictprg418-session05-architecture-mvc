@@ -100,6 +100,7 @@ namespace Session05ArchitectureMVC.Controllers
                 SelectListItem item = new SelectListItem();
                 item.Text = user.UserName;
                 item.Value = user.Id;
+                mRole.userList.Add(item);
             }
             
             // Populate a dropdown with role information
@@ -113,6 +114,7 @@ namespace Session05ArchitectureMVC.Controllers
                 SelectListItem item = new SelectListItem();
                 item.Text = role.Name;
                 item.Value = role.Id;
+                mRole.roleList.Add(item);
             }
         }
     }
