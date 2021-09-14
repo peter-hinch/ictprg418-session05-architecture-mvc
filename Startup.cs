@@ -85,7 +85,7 @@ namespace Session05ArchitectureMVC
             {
                 // Specifying 'Home' will look for the 'HomeController.cs'
                 // controller and the 'Index()' method.
-                endpoints.MapControllerRoute("default", "{controller=Account}/{action=Register}/{id?}");
+                endpoints.MapControllerRoute("default", "{controller=Administration}/{action=CreateRole}/{id?}");
             });
 
             // Added when using database migration.

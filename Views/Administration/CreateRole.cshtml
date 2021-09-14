@@ -1,7 +1,19 @@
 ﻿@model Session05ArchitectureMVC.ViewModels.CreateRoleViewModel
 
-@{
-
-}
-
 <h1>Role Registration</h1>
+<div class="row">
+    <div class="col-md-12">
+        <form method="post">
+            <div asp-validation-summary="All" class="text-danger">
+
+            </div>
+            <div>
+                <label asp-for="roleName"></label>
+                <input asp-for="roleName" class="form-control" />
+                <span asp-validation-for="roleName" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Create Role</button>
+        </form>
+    </div>
+</div>
