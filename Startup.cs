@@ -1,7 +1,9 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,12 +34,21 @@ namespace Session05ArchitectureMVC
                 .Build();
         }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+        // This method gets called by the runtime. Use this method to add services
+        // to the container. For more information on how to configure your
+        // application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            // Register MVC design pattern.
-            services.AddMvc();
+            // 1. Register MVC design pattern
+            // 2. Set the authorization policy in options (anon. function is an
+            //    optional parameter).
+            services.AddMvc(options =>
+            {
+                var policy = new AuthorizationPolicyBuilder()
+                    .RequireAuthenticatedUser()
+                    .Build();
+                options.Filters.Add(new AuthorizeFilter(policy));
+            });
 
             // Entity Framework requires the following dependencies to be installed:
             // - Microsoft.EntityFrameworkCore 
@@ -80,6 +91,9 @@ namespace Session05ArchitectureMVC
 
             // Middleware
             app.UseRouting();
+
+            // Authorization
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
