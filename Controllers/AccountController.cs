@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Session05ArchitectureMVC.ViewModels;
@@ -86,9 +87,34 @@ namespace Session05ArchitectureMVC.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult Login()
         {
-            return View();
+            return View(new LoginViewModel());
+        }
+        
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel m)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await signInManager.PasswordSignInAsync(m.email, m.password, m.rememberMe, false);
+
+                if(result.Succeeded)
+                {
+                    var user = userManager.FindByNameAsync(m.email);
+                    var userId = user.Id;
+                    var userName = m.email;
+                    HttpContext.Session.SetString("userId", userId.ToString());
+                    HttpContext.Session.SetString("userName", userName);
+
+                    return RedirectToAction("Display", "Post");
+                }
+
+                ModelState.AddModelError("key", "Invalid Login Attempt");
+            }
+
+            return View(m);
         }
     }
 }

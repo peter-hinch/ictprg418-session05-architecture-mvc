@@ -38,9 +38,20 @@ namespace Session05ArchitectureMVC.Controllers
 
         public IActionResult Display()
         {
+            // Check to see if the user is signed in. If not, redirect to the 
+            // Login view in Account controller.
+            var strUserId = HttpContext.Session.GetString("userId");
+
+            if( strUserId == null )
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            
             // Session [""]
+            /*
             HttpContext.Session.SetString("userID", "MyValueOrObject");
             int x = 0;
+            */
             
             // Display all the Post objects.
             /*

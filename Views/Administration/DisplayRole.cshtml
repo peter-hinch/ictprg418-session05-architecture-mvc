@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Session05ArchitectureMVC.ViewModels.User1>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Admin</th>
+            <th>User</th>
+        </tr>
+    </thead>
+
+    @foreach (var v in Model)
+    {
+        <tr>
+            <td>@v.userName&nbsp;</td>
+            @foreach (var p in v.list)
+            {
+                <td>@p.roleName</td>
+                <td>@Html.CheckBox(p.roleName, p.isSelected)</td>
+            }
+        </tr>
+    }
+</table>

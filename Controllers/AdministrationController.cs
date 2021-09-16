@@ -139,5 +139,44 @@ namespace Session05ArchitectureMVC.Controllers
                 mRole.roleList.Add(item);
             }
         }
+
+        // An action method to display users and their associated roles.
+        [HttpGet]
+        public async Task<IActionResult> DisplayRole()
+        {
+            List<IdentityUser> listUser = new List<IdentityUser>();
+            List<IdentityRole> listRole = new List<IdentityRole>();
+            var users = userManager.Users;
+            var roles = roleManager.Roles;
+            foreach (var user in users) { listUser.Add(user); }
+            foreach (var role in roles) { listRole.Add(role); }
+
+            var model = new List<User1>();
+            foreach (var user in listUser)
+            {
+                User1 user1 = new User1 { userName = user.UserName };
+                foreach (var role in listRole)
+                {
+                    var UserRoleViewModel = new UserRoleViewModel
+                    {
+                        roleID = role.Id,
+                        roleName = role.Name
+                    };
+
+                    if (await userManager.IsInRoleAsync(user, role.Name))
+                    {
+                        UserRoleViewModel.isSelected = true;
+                    }
+                    else
+                    {
+                        UserRoleViewModel.isSelected = false;
+                    }
+                    user1.list.Add(UserRoleViewModel);
+
+                }
+                model.Add(user1);
+            }
+            return View(model);
+        }
     }
 }
