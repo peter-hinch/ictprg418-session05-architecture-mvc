@@ -1,0 +1,17 @@
+﻿@using Microsoft.Extensions.Options
+@inject IOptions<Session05ArchitectureMVC.Models.StripeSettings> Stripe
+@model Session05ArchitectureMVC.Models.Keys
+
+
+<form action="/Payment/Charge" method="POST">
+    <article>
+        <label>Amount: @Model.amount</label>
+    </article>
+    <script src="//checkout.stripe.com/v2/checkout.js"
+            class="stripe-button"
+            data-key=@Model.publicKey
+            data-locale="auto"
+            data-description=@Model.description
+            data-amount=@Model.amount>
+    </script>
+</form>

@@ -24,8 +24,6 @@ namespace Session05ArchitectureMVC.Controllers
         [HttpGet]
         public IActionResult Register()
         {
-            
-            
             return View(new RegisterViewModel());
         }
 
@@ -88,12 +86,14 @@ namespace Session05ArchitectureMVC.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Login()
         {
             return View(new LoginViewModel());
         }
         
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Login(LoginViewModel m)
         {
             if (ModelState.IsValid)

@@ -8,6 +8,6 @@ namespace Session05ArchitectureMVC.Models
     public class StripeSettings
     {
         public string secretKey { get; set; }
-        public sting publishableKey { get; set; }
+        public string publishableKey { get; set; }
     }
 }
