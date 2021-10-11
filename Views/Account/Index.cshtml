@@ -1,0 +1,33 @@
+﻿@model Session05ArchitectureMVC.Models.Post
+
+<fieldset>
+    <table>
+        <tr><td>@Html.EditorFor(m => m.title, new { htmlAttributes = new { @class = "valcheck", @id = "someid", @title = "Title" } })</td></tr>
+        <tr><td>@Html.EditorFor(m => m.newsContent, new { htmlAttributes = new { @class = "valcheck", @id = "myTextArea", @title = "News" } })</td></tr>
+        <tr><td><button type="submit" id="btnSubmit">Add</button></td></tr>
+    </table>
+    <div id="error_display_div">
+    </div>
+
+</fieldset>
+
+@section scripts{
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script>
+        alert("Called");
+        $(document).ready(function () {
+            $("#btnSubmit").click(function () {
+                $("#error_display_div").text("");
+                $(".valcheck").each(function () {
+                    var id = this.id;
+                    var field_val = $("#" + id).val();
+
+                    if (field_val == "") {
+                        var field_name = $("#" + id).attr('title');
+                        $("#error_display_div").append("Please enter " + field_name + "<br>");
+                    }
+                });
+            });
+        });
+    </script>
+}

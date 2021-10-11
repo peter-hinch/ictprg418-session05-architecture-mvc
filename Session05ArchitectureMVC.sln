@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Session05ArchitectureMVC", "Session05ArchitectureMVC.csproj", "{84781545-193A-485A-80FE-9EE17B1F2BCA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Session05ArchitectureMVC", "Session05ArchitectureMVC.csproj", "{84781545-193A-485A-80FE-9EE17B1F2BCA}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Session05ArchitectureMVCWebSetup", "..\Session05ArchitectureMVCWebSetup\Session05ArchitectureMVCWebSetup.vdproj", "{A7B58378-53A3-420E-AECE-7AC20F1914B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,8 @@ Global
 		{84781545-193A-485A-80FE-9EE17B1F2BCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84781545-193A-485A-80FE-9EE17B1F2BCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84781545-193A-485A-80FE-9EE17B1F2BCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7B58378-53A3-420E-AECE-7AC20F1914B8}.Debug|Any CPU.ActiveCfg = Debug
+		{A7B58378-53A3-420E-AECE-7AC20F1914B8}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

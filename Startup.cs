@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Session05ArchitectureMVC.Models;
+using Stripe;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -85,6 +86,10 @@ namespace Session05ArchitectureMVC
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            // Set up stripe using secret key from appsettings.json .
+            string secretKey = configuration.GetValue<string>("Stripe:SecretKey");
+            StripeConfiguration.ApiKey = secretKey;
 
             // For session variables
             app.UseSession();
