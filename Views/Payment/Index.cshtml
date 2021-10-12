@@ -5,7 +5,7 @@
 
 <form action="/Payment/Charge" method="POST">
     <article>
-        <label>Amount: @Model.amount</label>
+        <label>Amount: $@(String.Format("{0:0.00}",(double)Model.amount/100,2))</label>
     </article>
     <script src="//checkout.stripe.com/v2/checkout.js"
             class="stripe-button"
