@@ -21,7 +21,7 @@ namespace Session05ArchitectureMVC.Controllers
             string pubKey = configuration["Stripe:PublishableKey"];
             keys = new Keys {
                 amount = 500,
-                currency = "AuD",
+                currency = "aud",
                 description = "Sample",
                 publicKey = pubKey
             };
