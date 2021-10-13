@@ -95,7 +95,7 @@ namespace Session05ArchitectureMVC
             {
                 // One parameter for string only, overload with two paramaters
                 // allows passing the exception as well.
-                global.gLogger.log.Debug(ex, "This is a debug message");
+                global.gLogger.log.Debug(ex, "This is a debug message, here is the exception: " + ex.Message);
                 //global.gLogger.log.Error(ex, "This is a debug message");
                 //global.gLogger.log.Fatal(ex, "This is a debug message");
             }
