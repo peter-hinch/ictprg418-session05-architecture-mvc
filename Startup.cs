@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NLog;
 using Session05ArchitectureMVC.Models;
 using Stripe;
 using System;
@@ -30,9 +31,11 @@ namespace Session05ArchitectureMVC
         {
             configuration = new ConfigurationBuilder()
                 .AddEnvironmentVariables()
-                // We can get the content root from the env object
+                // We can get the content root from the env object.
                 .AddJsonFile(env.ContentRootPath + "/config.json")
                 .Build();
+            // Obtain the global logging object.
+            global.gLogger.log = LogManager.GetCurrentClassLogger();
         }
 
         // This method gets called by the runtime. Use this method to add services
@@ -82,6 +85,21 @@ namespace Session05ArchitectureMVC
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            // These are the forms an NLog message can take for use in a
+            // try / catch block.
+            try
+            {
+                //throw new Exception();
+            }
+            catch (Exception ex)
+            {
+                // One parameter for string only, overload with two paramaters
+                // allows passing the exception as well.
+                global.gLogger.log.Debug(ex, "This is a debug message");
+                //global.gLogger.log.Error(ex, "This is a debug message");
+                //global.gLogger.log.Fatal(ex, "This is a debug message");
+            }
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
