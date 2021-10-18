@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Session05ArchitectureMVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +11,30 @@ namespace Session05ArchitectureMVC.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IPostTestRepository _postRepo;
+
+        public HomeController(IPostTestRepository postRepo)
+        {
+            _postRepo = postRepo;
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult Add()
+        {
+            Post p = new Post();
+            p.publishedOn = DateTime.Now;
+            return View(p);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public IActionResult Add(Post p)
+        {
+            _postRepo.Add(p);
+            return View();
+        }
+
         public IActionResult Index()
         {
             string myString = HttpContext.Session.GetString("userID"); // string myString = Session["userID"].ToString();

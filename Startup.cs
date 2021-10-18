@@ -80,6 +80,19 @@ namespace Session05ArchitectureMVC
             // For session variables
             services.AddDistributedMemoryCache();
             services.AddSession();
+
+            // Example to demonstrate the differences between singleton, scoped
+            // and transient - Navigate to '~/Home/Add' and observe the post
+            // count to test these.
+            // Using Singleton - this will be the same for every controller and
+            // every service.
+            services.AddSingleton<IPostTestRepository, PostTestRepository>();
+            // Using Scoped - this is will be the same within this request, but
+            // differ accross different requests.
+            //services.AddScoped<IPostTestRepository, PostTestRepository>();
+            // Using Transient - this is always different, a new instance will
+            // be created for every controller and every service.
+            //services.AddTransient<IPostTestRepository, PostTestRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -124,7 +137,7 @@ namespace Session05ArchitectureMVC
             {
                 // Specifying 'Home' will look for the 'HomeController.cs'
                 // controller and the 'Index()' method.
-                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Add}/{id?}");
             });
 
             // Added when using database migration.
